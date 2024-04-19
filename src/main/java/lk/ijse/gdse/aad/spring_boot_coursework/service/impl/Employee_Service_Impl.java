@@ -28,24 +28,24 @@ public class Employee_Service_Impl implements EmployeeService {
 
     @Override
     public void updateEmployee(String id, EmployeeDTO employeeDTO) {
-//        Optional<Employee> employeeOptional = employeeDao.findById(id);
-//        if (!employeeOptional.isPresent()) throw new NotFoundException("Employee");{
-//                    employeeOptional.get().setCode(id);
-//                    employeeOptional.get().setName(employeeDTO.getName());
-//                    employeeOptional.get().setGender(employeeDTO.getGender());
-//                    employeeOptional.get().setDate_of_birth(employeeDTO.getDate_of_birth());
-//                    employeeOptional.get().setContact_no(employeeDTO.getContact_no());
-//                    employeeOptional.get().setEmergency_contact_no(employeeDTO.getEmergency_contact_no());
-//                    employeeOptional.get().setProfile_picture(employeeDTO.getProfile_picture());
-//                    employeeOptional.get().setAccessRole(employeeDTO.getAccessRole());
-//                    employeeOptional.get().setDesignation(employeeDTO.getDesignation());
-//                    employeeOptional.get().setName_of_the_guardian(employeeDTO.getName_of_the_guardian());
-//                    employeeOptional.get().setDate_of_joining(employeeDTO.getDate_of_joining());
-//                    employeeOptional.get().setAddress(employeeDTO.getAddress());
-//                    employeeOptional.get().setAttached_branch(employeeDTO.getAttached_branch());
-//                    employeeOptional.get().setStatus(employeeDTO.getStatus());
-//                    employeeOptional.get().setEmail(employeeDTO.getEmail());
-//                    employeeOptional.ifPresent(employeeDao::saveAndFlush);
-//        }
+        Optional<Employee> employeeOptional = employeeDao.findById(id);
+        if (!employeeOptional.isPresent()) throw new NotFoundException("Employee");{
+                    employeeOptional.get().setCode(id);
+                    employeeOptional.get().setName(employeeDTO.getName());
+                    employeeOptional.get().setGender(employeeDTO.getGender());
+                    employeeOptional.get().setDate_of_birth(employeeDTO.getDate_of_birth());
+                    employeeOptional.get().setContact_no(employeeDTO.getContact_no());
+                    employeeOptional.get().setEmergency_contact_no(employeeDTO.getEmergency_contact_no());
+                    employeeOptional.get().setProfile_picture(employeeDTO.getProfile_picture());
+                    employeeOptional.get().setAccessRole(employeeDTO.getAccessRole());
+                    employeeOptional.get().setDesignation(employeeDTO.getDesignation());
+                    employeeOptional.get().setName_of_the_guardian(employeeDTO.getName_of_the_guardian());
+                    employeeOptional.get().setDate_of_joining(employeeDTO.getDate_of_joining());
+                    employeeOptional.get().setAddress(employeeDTO.getAddress());
+                    employeeOptional.get().setAttached_branch(employeeDTO.getAttached_branch());
+                    employeeOptional.get().setStatus(employeeDTO.getStatus());
+                    employeeOptional.get().setEmail(employeeDTO.getEmail());
+                    employeeOptional.ifPresent(employeeDao::saveAndFlush);
+        }
     }
 }
