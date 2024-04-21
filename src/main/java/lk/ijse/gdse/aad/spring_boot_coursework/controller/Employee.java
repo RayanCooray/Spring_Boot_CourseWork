@@ -26,26 +26,28 @@ public class Employee {
     private EmployeeService employeeService;
     @GetMapping("/health")
     public String healthTest(){
-        return "CustomerHealth Test";
+        return "Health Test";
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void savecustomer(EmployeeDTO employeeDTO){
+    public void savecustomer(EmployeeDTO employeeDTO, @RequestPart("profilepic") String profilepic){
         String dob = String.valueOf(employeeDTO.getDate_of_birth());
         employeeDTO.setDate_of_birth(dob);
         employeeDTO.setCode(UUID.randomUUID().toString());
-        employeeDTO.setProfile_picture(Imp.convertBase64(employeeDTO.getProfile_picture()));
+        String dp = Imp.convertBase64(profilepic);
+        employeeDTO.setProfile_picture(dp);
         employeeService.saveEmployee(employeeDTO);
 
     }
 
-    @PutMapping(value ="/{id}")
-    public void updateEmployee(@PathVariable("id") String id,@RequestBody EmployeeDTO employeeDTO){
+    @PutMapping(value ="/{id}" ,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateEmployee(@PathVariable("id") String id,@RequestBody EmployeeDTO employeeDTO ,@RequestPart("profilepic") String profilepic){
         employeeDTO.setCode(id);
         String dob = String.valueOf(employeeDTO.getDate_of_birth());
         employeeDTO.setDate_of_birth(dob);
         employeeDTO.setCode(UUID.randomUUID().toString());
-        employeeDTO.setProfile_picture(Imp.convertBase64(employeeDTO.getProfile_picture()));
+        String dp = Imp.convertBase64(profilepic);
+        employeeDTO.setProfile_picture(dp);
         employeeService.updateEmployee(id, employeeDTO);
     }
 

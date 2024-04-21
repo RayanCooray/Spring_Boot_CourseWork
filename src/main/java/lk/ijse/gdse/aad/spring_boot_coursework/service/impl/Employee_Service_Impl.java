@@ -22,8 +22,8 @@ public class Employee_Service_Impl implements EmployeeService {
     private final Mapping mapping;
     @Override
     public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
-        return mapping.toCustomerDTO(employeeDao
-                .save(mapping.toCustomer(employeeDTO)));
+        return mapping.toEmployeeDTO(employeeDao
+                .save(mapping.toEmployee(employeeDTO)));
     }
 
     @Override
