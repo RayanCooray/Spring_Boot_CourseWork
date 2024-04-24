@@ -30,7 +30,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable).
-                authorizeHttpRequests(req->req.requestMatchers("/api/v1/user/**").
+                authorizeHttpRequests(req->req.requestMatchers("/api/v1/user/**","/api/v1/**").
                         permitAll().anyRequest()
                         .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
