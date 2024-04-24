@@ -51,5 +51,27 @@ public class Customer_Service_Impl implements CustomerService {
         }
     }
 
+    @Override
+    public boolean deleteCustomer(String id) {
+        Optional<Customer> customerOptional = customerDao.findById(id);
+        if (!customerOptional.isPresent()) throw new NotFoundException("Employee");{
+            customerOptional.ifPresent(customerDao::delete);
+            return true;
+        }
+    }
+
+    @Override
+    public Iterable<CustomerDTO> getAllCustomers() {
+        return mapping.toCustomerDTOs(customerDao.findAll());
+    }
+
+    @Override
+    public CustomerDTO getCustomer(String id) {
+        Optional<Customer> customerOptional = customerDao.findById(id);
+        if (!customerOptional.isPresent()) throw new NotFoundException("Employee");{
+            return mapping.toCustomerDTO(customerOptional.get());
+        }
+    }
+
 
 }

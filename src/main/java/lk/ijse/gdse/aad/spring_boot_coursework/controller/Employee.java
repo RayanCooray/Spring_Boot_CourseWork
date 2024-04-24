@@ -1,5 +1,6 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.controller;
 
+import lk.ijse.gdse.aad.spring_boot_coursework.dto.CustomerDTO;
 import lk.ijse.gdse.aad.spring_boot_coursework.dto.EmployeeDTO;
 import lk.ijse.gdse.aad.spring_boot_coursework.service.EmployeeService;
 import lk.ijse.gdse.aad.spring_boot_coursework.util.Imp;
@@ -32,15 +33,28 @@ public class Employee {
         return true;
     }
 
-    @PutMapping(value ="/{id}" ,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void updateEmployee(@PathVariable("id") String id,@RequestBody EmployeeDTO employeeDTO ,@RequestPart("profilepic") String profilepic){
+    @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateEmployee(@RequestPart("id") String id,@RequestBody EmployeeDTO employeeDTO ,@RequestPart("profilepic") String profilepic){
         employeeDTO.setCode(id);
-//        String dob = String.valueOf(employeeDTO.getDate_of_birth());
-//        employeeDTO.setDate_of_birth(dob);
+        String dob = String.valueOf(employeeDTO.getDate_of_birth());
+        employeeDTO.setDate_of_birth(dob);
         employeeDTO.setCode(UUID.randomUUID().toString());
         String dp = Imp.convertBase64(profilepic);
         employeeDTO.setProfile_picture(dp);
         employeeService.updateEmployee(id, employeeDTO);
     }
+
+
+
+    @DeleteMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void deleteEmployee(@RequestPart("id") String id){
+        employeeService.deleteEmployee(id);
+    }
+
+//    @PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public boolean updateCustomer(@RequestBody CustomerDTO customerDTO){
+//        return  customerService.updateCustomer(customerDTO.getCustomer_code(),customerDTO);
+//
+//    }
 
 }

@@ -48,4 +48,12 @@ public class Employee_Service_Impl implements EmployeeService {
                     employeeOptional.ifPresent(employeeDao::saveAndFlush);
         }
     }
+
+    @Override
+    public void deleteEmployee(String id) {
+        Optional<Employee> employeeOptional = employeeDao.findById(id);
+        if (!employeeOptional.isPresent()) throw new NotFoundException("Employee deleted"+id);{
+            employeeOptional.ifPresent(employeeDao::delete);
+        }
+    }
 }

@@ -7,4 +7,9 @@ public interface CustomerService {
 
     boolean updateCustomer(String id, CustomerDTO customerDTO);
 
+    boolean deleteCustomer(String id);
+
+    Iterable<CustomerDTO> getAllCustomers();
+
+    CustomerDTO getCustomer(String id);
 }

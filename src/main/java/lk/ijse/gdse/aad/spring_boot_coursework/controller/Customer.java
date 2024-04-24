@@ -32,4 +32,17 @@ public class Customer {
         return  customerService.updateCustomer(customerDTO.getCustomer_code(),customerDTO);
 
     }
+
+    @DeleteMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public boolean deleteCustomer(@RequestPart ("id") String id){
+        return customerService.deleteCustomer(id);
+    }
+    @GetMapping(value = "/getCustomerById",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public CustomerDTO getCustomer(@RequestPart("id") String id){
+        return customerService.getCustomer(id);
+    }
+    @GetMapping("/getAllCustomers")
+    public Iterable<CustomerDTO> getAllCustomers(){
+        return customerService.getAllCustomers();
+    }
 }
