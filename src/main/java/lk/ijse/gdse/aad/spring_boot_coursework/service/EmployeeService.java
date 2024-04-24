@@ -8,4 +8,9 @@ public interface EmployeeService {
     void updateEmployee(String id, EmployeeDTO employeeDTO);
 
     void deleteEmployee(String id);
+
+    EmployeeDTO getEmployee(String id);
+
+    Iterable<EmployeeDTO> getAllEmployee();
+
 }

@@ -44,4 +44,8 @@ public class Mapping {
     public Iterable<CustomerDTO> toCustomerDTOs(List<Customer> all) {
         return mapper.map(all, List.class);
     }
+
+    public Iterable<EmployeeDTO> toEmployeeDTOs(List<Employee> all) {
+        return mapper.map(all, List.class);
+    }
 }

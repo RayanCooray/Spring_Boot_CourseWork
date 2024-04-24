@@ -32,7 +32,6 @@ public class Employee {
         employeeService.saveEmployee(employeeDTO);
         return true;
     }
-
     @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void updateEmployee(@RequestPart("id") String id,@RequestBody EmployeeDTO employeeDTO ,@RequestPart("profilepic") String profilepic){
         employeeDTO.setCode(id);
@@ -43,18 +42,16 @@ public class Employee {
         employeeDTO.setProfile_picture(dp);
         employeeService.updateEmployee(id, employeeDTO);
     }
-
-
-
     @DeleteMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void deleteEmployee(@RequestPart("id") String id){
         employeeService.deleteEmployee(id);
     }
-
-//    @PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public boolean updateCustomer(@RequestBody CustomerDTO customerDTO){
-//        return  customerService.updateCustomer(customerDTO.getCustomer_code(),customerDTO);
-//
-//    }
-
+    @GetMapping(value = "/getEmployeeById",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public EmployeeDTO getEmployee(@RequestPart("id") String id){
+        return employeeService.getEmployee(id);
+    }
+    @GetMapping(value = "/getEmployees")
+    public Iterable<EmployeeDTO> getAllEmployee(){
+        return employeeService.getAllEmployee();
+    }
 }

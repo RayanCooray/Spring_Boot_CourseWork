@@ -56,4 +56,17 @@ public class Employee_Service_Impl implements EmployeeService {
             employeeOptional.ifPresent(employeeDao::delete);
         }
     }
+
+    @Override
+    public EmployeeDTO getEmployee(String id) {
+        Optional<Employee> employeeOptional = employeeDao.findById(id);
+        if (!employeeOptional.isPresent()) throw new NotFoundException("Employee");{
+            return mapping.toEmployeeDTO(employeeOptional.get());
+        }
+    }
+
+    @Override
+    public Iterable<EmployeeDTO> getAllEmployee() {
+        return mapping.toEmployeeDTOs(employeeDao.findAll());
+    }
 }
