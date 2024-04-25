@@ -38,5 +38,4 @@ public class User {
     public ResponseEntity<JWTAuthResponse> signIn(@RequestBody SignIn signInReq) {
         return ResponseEntity.ok(authenticationService.signIn(signInReq));
     }
-
 }

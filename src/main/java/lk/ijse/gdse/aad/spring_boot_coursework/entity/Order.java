@@ -25,4 +25,7 @@ public class Order {
     private Double totalprice;
     private Payment_Method paymentMethod;
     private Date purchased_date;
+
+
+
 }

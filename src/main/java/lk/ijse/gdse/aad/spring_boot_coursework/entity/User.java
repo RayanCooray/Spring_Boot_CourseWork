@@ -28,6 +28,8 @@ public class User implements UserDetails {
         @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
         private Employee employee;
 
+
+
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
                 Set<GrantedAuthority> grantedAuthoritySet = new HashSet<>();

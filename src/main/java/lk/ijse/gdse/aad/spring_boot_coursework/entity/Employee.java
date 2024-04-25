@@ -33,7 +33,6 @@ public class Employee implements SuperEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
     private String email;
-    @OneToOne
-    @JoinColumn(name = "user_email")
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 }

@@ -7,6 +7,7 @@ import lk.ijse.gdse.aad.spring_boot_coursework.util.Imp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -32,6 +33,7 @@ public class Employee {
         employeeService.saveEmployee(employeeDTO);
         return true;
     }
+    @PreAuthorize("hasRole('Admin')")
     @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void updateEmployee(@RequestPart("id") String id,@RequestBody EmployeeDTO employeeDTO ,@RequestPart("profilepic") String profilepic){
         employeeDTO.setCode(id);
