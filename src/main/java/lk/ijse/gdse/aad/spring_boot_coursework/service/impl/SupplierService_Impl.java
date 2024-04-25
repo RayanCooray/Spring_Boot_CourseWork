@@ -60,4 +60,13 @@ public class SupplierService_Impl implements SupplierService {
         return true;
     }
 
+    @Override
+    public boolean deleteSupplier(String id) {
+        Optional<Supplier> supplierOptional = supplierDao.findById(id);
+        if (!supplierOptional.isPresent()) throw new NotFoundException("Employee");{
+            supplierOptional.ifPresent(supplierDao::delete);
+            return true;
+        }
+    }
+
 }

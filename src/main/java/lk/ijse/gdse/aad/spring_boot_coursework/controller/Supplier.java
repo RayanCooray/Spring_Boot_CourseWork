@@ -37,7 +37,11 @@ public class Supplier {
         return supplierService.getAllSuppliers();
     }
     @GetMapping("/getSupplierById")
-    public SupplierDTO getSupplierById(String id){
+    public SupplierDTO getSupplierById(@RequestPart ("id") String id){
         return supplierService.getSupplierById(id);
+    }
+    @DeleteMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public boolean deleteSupplier(@RequestPart ("id") String id){
+        return supplierService.deleteSupplier(id);
     }
 }
