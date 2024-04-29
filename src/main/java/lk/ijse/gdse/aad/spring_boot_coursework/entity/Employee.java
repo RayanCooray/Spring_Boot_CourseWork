@@ -1,11 +1,12 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Gender;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor

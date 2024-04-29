@@ -1,7 +1,9 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.service.impl;
 
+import lk.ijse.gdse.aad.spring_boot_coursework.dto.EmployeeDTO;
 import lk.ijse.gdse.aad.spring_boot_coursework.dto.UserDTO;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Access_Role;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
+import lk.ijse.gdse.aad.spring_boot_coursework.entity.Employee;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.User;
 import lk.ijse.gdse.aad.spring_boot_coursework.repo.UserDao;
 import lk.ijse.gdse.aad.spring_boot_coursework.reqANDresp.response.JWTAuthResponse;
@@ -40,6 +42,25 @@ public class Auth_Service implements AuthenticationService {
         String token = jwtService.generateToken(userByEmail);
         return JWTAuthResponse.builder().token(token).build();
     }
+
+//    @Override
+//    public JWTAuthResponse signUp(SignUp signUp, EmployeeDTO employeeDTO) {
+//        UserDTO build = UserDTO.builder()
+//                .username_code(UUID.randomUUID().toString())
+//                .email(signUp.getEmail())
+//                .Password(passwordEncoder.encode(signUp.getPassword()))
+//                .role(Access_Role.valueOf(String.valueOf(signUp.getRole())))
+//                .build();
+//
+//        User save = mapping.toUser(build);
+//        Employee employee = new Employee();
+//        employee.setCode(employeeDTO.getCode());
+//        save.set(employee);
+//
+//        User user = userDAO.save(save);
+//        String generateToken = jwtService.generateToken(user);
+//        return JwtAuthResponse.builder().token(generateToken).build();
+//    }
 
     @Override
     public JWTAuthResponse signUp(SignUp signUp) {

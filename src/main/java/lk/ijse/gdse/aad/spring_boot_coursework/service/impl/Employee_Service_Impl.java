@@ -1,9 +1,12 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.service.impl;
 
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.Employee;
 import lk.ijse.gdse.aad.spring_boot_coursework.exception.NotFoundException;
 import lk.ijse.gdse.aad.spring_boot_coursework.repo.EmployeeDao;
 import lk.ijse.gdse.aad.spring_boot_coursework.dto.EmployeeDTO;
+import lk.ijse.gdse.aad.spring_boot_coursework.reqANDresp.secure.SignUp;
+import lk.ijse.gdse.aad.spring_boot_coursework.service.AuthenticationService;
 import lk.ijse.gdse.aad.spring_boot_coursework.service.EmployeeService;
 import lk.ijse.gdse.aad.spring_boot_coursework.util.Mapping;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +21,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class Employee_Service_Impl implements EmployeeService {
     private final EmployeeDao employeeDao;
+
+    private final AuthenticationService authenticationService;
 
     private final Mapping mapping;
     @Override
@@ -69,4 +74,20 @@ public class Employee_Service_Impl implements EmployeeService {
     public Iterable<EmployeeDTO> getAllEmployee() {
         return mapping.toEmployeeDTOs(employeeDao.findAll());
     }
+
+//    @Override
+//    public void saveEmployee(EmployeeDTO employeeDTO, String password) {
+//        Employee employee = mapping.toEmployee(employeeDTO);
+//        EmployeeDTO savedEmployee = mapping
+//                .toEmployeeDTO(employeeDao.save(employee));
+//
+//        SignUp signUp = new SignUp();
+//        signUp.setEmail(employeeDTO.getEmail());
+//        signUp.setPassword(password);
+//        signUp.setRole(Access_Role.valueOf(String.valueOf(employeeDTO.getAccessRole())));
+//
+//
+//        authenticationService.signUp(signUp,employeeDTO);
+//
+//    }
 }

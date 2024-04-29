@@ -16,6 +16,7 @@ import java.util.UUID;
 @RequestMapping("/api/v1/employee")
 @RequiredArgsConstructor
 public class Employee {
+    private static int counter = 0;
     @Autowired
     private EmployeeService employeeService;
     @GetMapping("/health")
@@ -24,16 +25,23 @@ public class Employee {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean savecustomer(EmployeeDTO employeeDTO, @RequestPart("profilepic") String profilepic){
+    public boolean saveemp(EmployeeDTO employeeDTO, @RequestPart("profilepic") String profilepic ,@RequestPart ("password") String password){
         String dob = String.valueOf(employeeDTO.getDate_of_birth());
         employeeDTO.setDate_of_birth(dob);
-        employeeDTO.setCode(UUID.randomUUID().toString());
+        employeeDTO.setCode(generateID());
         String dp = Imp.convertBase64(profilepic);
         employeeDTO.setProfile_picture(dp);
+        System.out.println(employeeDTO.getCode());
+        System.out.println(employeeDTO.getUsername_code());
         employeeService.saveEmployee(employeeDTO);
         return true;
     }
-    @PreAuthorize("hasRole('Admin')")
+
+    public static String generateID() {
+        counter++;
+        return String.format("EMP%03d", counter);
+    }
+//    @PreAuthorize("hasRole('Admin')")
     @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void updateEmployee(@RequestPart("id") String id,@RequestBody EmployeeDTO employeeDTO ,@RequestPart("profilepic") String profilepic){
         employeeDTO.setCode(id);
@@ -41,6 +49,7 @@ public class Employee {
         employeeDTO.setDate_of_birth(dob);
         employeeDTO.setCode(UUID.randomUUID().toString());
         String dp = Imp.convertBase64(profilepic);
+        System.out.println("===================================================================================="+id);
         employeeDTO.setProfile_picture(dp);
         employeeService.updateEmployee(id, employeeDTO);
     }

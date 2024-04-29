@@ -1,13 +1,11 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.dto;
 
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Access_Role;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Gender;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Status;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Gender;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,4 +26,5 @@ public class EmployeeDTO{
     private String attached_branch;
     private Status status;
     private String email;
+    private String username_code;
 }
