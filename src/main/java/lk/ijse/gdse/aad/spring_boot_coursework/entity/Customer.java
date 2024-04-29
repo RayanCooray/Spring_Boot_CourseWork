@@ -1,12 +1,12 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Gender;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Level;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -31,4 +31,5 @@ public class Customer {
     private String contact;
     private String email;
     private String purchase_date_time;
+
 }

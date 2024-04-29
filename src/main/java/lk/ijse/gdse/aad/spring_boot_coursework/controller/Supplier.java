@@ -36,10 +36,14 @@ public class Supplier {
     public Iterable<SupplierDTO> getAllSuppliers(){
         return supplierService.getAllSuppliers();
     }
+
+
     @GetMapping("/getSupplierById")
     public SupplierDTO getSupplierById(@RequestPart ("id") String id){
         return supplierService.getSupplierById(id);
     }
+
+
     @DeleteMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public boolean deleteSupplier(@RequestPart ("id") String id){
         return supplierService.deleteSupplier(id);

@@ -1,7 +1,7 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.reqANDresp.secure;
 
 
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Access_Role;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

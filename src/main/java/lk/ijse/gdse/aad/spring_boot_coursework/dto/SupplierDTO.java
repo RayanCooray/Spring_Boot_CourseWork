@@ -1,9 +1,6 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.dto;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Category;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

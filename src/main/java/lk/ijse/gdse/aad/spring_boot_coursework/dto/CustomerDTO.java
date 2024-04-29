@@ -1,14 +1,8 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.dto;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Gender;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Level;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Gender;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Level;
 import lombok.*;
-
-import java.sql.Timestamp;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,4 +24,5 @@ public class CustomerDTO {
     private String contact;
     private String email;
     private String purchase_date_time;
+
 }

@@ -2,6 +2,7 @@ package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
 
 import jakarta.persistence.*;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,6 @@ public class User implements UserDetails {
         private String Password;
         @Enumerated(EnumType.STRING)
         private Access_Role role;
-        @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-        private Employee employee;
-
 
 
         @Override

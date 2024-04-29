@@ -1,9 +1,6 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,4 +35,16 @@ public class Inventory {
 
     @ManyToMany(mappedBy = "inventories")
     private Set<Supplier> suppliers = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "occasionCode",nullable = false)
+    private Occasion  occasionEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "varietyCode",nullable = false)
+    private Variety varietyEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "genderCode",nullable = false)
+    private MenWomenItem genderEntity;
 }

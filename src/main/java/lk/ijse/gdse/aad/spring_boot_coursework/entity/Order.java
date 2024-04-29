@@ -2,6 +2,7 @@ package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
 
 import jakarta.persistence.*;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Payment_Method;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,9 +24,9 @@ public class Order {
     private String added_point;
     private String Cashier_Name;
     private Double totalprice;
+    @Enumerated(EnumType.STRING)
     private Payment_Method paymentMethod;
     private Date purchased_date;
-
 
 
 }
