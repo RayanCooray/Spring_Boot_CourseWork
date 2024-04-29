@@ -1,0 +1,8 @@
+MenWomenItemCode
+Occasion
+Return
+Size
+Stock
+StockOrderDetails
+StockSize
+Variety
