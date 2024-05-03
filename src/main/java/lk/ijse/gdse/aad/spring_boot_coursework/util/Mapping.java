@@ -1,17 +1,12 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.util;
 
-import lk.ijse.gdse.aad.spring_boot_coursework.dto.CustomerDTO;
-import lk.ijse.gdse.aad.spring_boot_coursework.dto.EmployeeDTO;
-import lk.ijse.gdse.aad.spring_boot_coursework.dto.SupplierDTO;
-import lk.ijse.gdse.aad.spring_boot_coursework.dto.UserDTO;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Customer;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Employee;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.Supplier;
-import lk.ijse.gdse.aad.spring_boot_coursework.entity.User;
+import lk.ijse.gdse.aad.spring_boot_coursework.dto.*;
+import lk.ijse.gdse.aad.spring_boot_coursework.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
 
 @Component
@@ -49,6 +44,14 @@ public class Mapping {
         return  mapper.map(supplierDTO, Supplier.class);
     }
 
+    public ItemDTO toItemDTO(Item item) {
+        return  mapper.map(item, ItemDTO.class);
+    }
+
+    public Item toItem(ItemDTO itemDTO) {
+        return  mapper.map(itemDTO, Item.class);
+    }
+
     public Iterable<CustomerDTO> toCustomerDTOs(List<Customer> all) {
         return mapper.map(all, List.class);
     }
@@ -59,5 +62,49 @@ public class Mapping {
 
     public Iterable<SupplierDTO> toSupplierDTOs(List<Supplier> all) {
         return mapper.map(all, List.class);
+    }
+
+    public Iterable<ItemDTO> toItemDTOs(List<Item> all) {
+        return mapper.map(all, List.class);
+    }
+
+    public Collection<UserDTO> toUserDTOs(List<User> all) {
+        return mapper.map(all, Collection.class);
+    }
+
+    public MenWomenItem toGender(GenderDTO genderDTO) {
+        return mapper.map(genderDTO, MenWomenItem.class);
+    }
+
+    public Occasion toOccasion(OccasionDTO occasionDTO) {
+        return mapper.map(occasionDTO, Occasion.class);
+    }
+
+    public Variety toVariety(VarietyDTO varietyDTO) {
+        return mapper.map(varietyDTO, Variety.class);
+    }
+
+    public GenderDTO[] toGenderDTOs(List<MenWomenItem> all) {
+        return mapper.map(all, GenderDTO[].class);
+    }
+
+    public OccasionDTO[] toOccasionDTOs(List<Occasion> all) {
+        return mapper.map(all, OccasionDTO[].class);
+    }
+
+    public VarietyDTO[] toVarietyDTOs(List<Variety> all) {
+        return mapper.map(all, VarietyDTO[].class);
+    }
+
+    public GenderDTO toGenderDTO(MenWomenItem menWomenItem) {
+        return mapper.map(menWomenItem, GenderDTO.class);
+    }
+
+    public OccasionDTO toOccasionDTO(Occasion occasion) {
+        return mapper.map(occasion, OccasionDTO.class);
+    }
+
+    public VarietyDTO toVarietyDTO(Variety variety) {
+        return mapper.map(variety, VarietyDTO.class);
     }
 }
