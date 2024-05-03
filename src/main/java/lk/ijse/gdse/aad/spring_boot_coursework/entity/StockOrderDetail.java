@@ -16,10 +16,10 @@ public class StockOrderDetail {
     private int qty;
 
     @ManyToOne
-    @JoinColumn(name = "stockSizeId",nullable = false)
+    @JoinColumn(name = "stockSizeId")
     private StockSize stockSizeEntity;
 
     @ManyToOne
-    @JoinColumn(name = "orderId",nullable = false)
-    private Order orderEntity;
+    @JoinColumn(name = "orderId")
+    private Sale orderEntity;
 }

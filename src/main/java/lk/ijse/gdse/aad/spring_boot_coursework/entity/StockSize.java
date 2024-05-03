@@ -23,11 +23,11 @@ public class StockSize{
     private Double profitMargin;
 
     @ManyToOne
-    @JoinColumn(name = "stockId",nullable = false)
+    @JoinColumn(name = "stockId")
     private Stock stockEntity;
 
     @ManyToOne
-    @JoinColumn(name = "sizeCode",nullable = false)
+    @JoinColumn(name = "sizeCode")
     private Size sizeEntity;
 
     @OneToMany(mappedBy = "stockSizeEntity",cascade = CascadeType.ALL)
