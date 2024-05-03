@@ -6,6 +6,7 @@ import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,9 +20,11 @@ import java.util.Set;
 @Data
 @Table(name = "user")
 @Entity
+@ToString
 public class User implements UserDetails {
         @Id
         private String username_code;
+        @Column(unique = true)
         private String email;
         private String Password;
         @Enumerated(EnumType.STRING)
