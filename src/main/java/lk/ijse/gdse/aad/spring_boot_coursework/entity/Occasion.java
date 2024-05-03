@@ -11,11 +11,11 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@Table (name = "Occassion")
+//@Table (name = "Occassion")
 public class Occasion {
     @Id
     private String occasionCode;
     private String occasionDesc;
     @OneToMany(mappedBy = "occasionEntity",cascade = CascadeType.ALL)
-    private List<Inventory> itemEntities;
+    private List<Item> itemEntities;
 }

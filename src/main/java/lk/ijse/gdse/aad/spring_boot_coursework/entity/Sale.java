@@ -1,10 +1,12 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Payment_Method;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,17 +18,11 @@ import java.util.Set;
 @Table(name = "sale")
 public class Sale {
     @Id
-    private String order_id;
-    private String customer_name;
-    private String item_desc;
-    private int size;
-    private double unit_price;
-    private double item_qty;
-    private double total_price;
-    private Date purchase_date;
-    private String payment_method;
-    private double added_points;
-    private String cashier_name;
+    private String orderNo;
+    private Timestamp purchasedDate;
+    private int addedPoints;
+    @Enumerated(EnumType.STRING)
+    private Payment_Method paymentMethod;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -37,7 +33,7 @@ public class Sale {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "item_code")
     )
-    private Set<Inventory> inventories = new HashSet<>();
+    private Set<Item> inventories = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

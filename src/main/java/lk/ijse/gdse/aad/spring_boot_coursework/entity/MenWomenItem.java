@@ -1,5 +1,6 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,12 +12,13 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@Table (name = "gender")
+//@Table (name = "gender")
 public class MenWomenItem {
     @Id
+    @Nullable()
     private String genderCode;
     private String genderDesc;
     @OneToMany(mappedBy = "genderEntity",cascade = CascadeType.ALL)
-    private List<Inventory> itemEntities;
+    private List<Item> itemEntities;
 
 }

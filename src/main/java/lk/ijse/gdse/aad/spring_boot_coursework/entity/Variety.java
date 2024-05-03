@@ -17,5 +17,5 @@ public class Variety {
     private String varietyCode;
     private String varietyDesc;
     @OneToMany(mappedBy = "varietyEntity",cascade = CascadeType.ALL)
-    private List<Inventory> itemEntities;
+    private List<Item> itemEntities;
 }
