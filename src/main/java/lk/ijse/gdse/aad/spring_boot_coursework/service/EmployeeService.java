@@ -13,5 +13,4 @@ public interface EmployeeService {
 
     Iterable<EmployeeDTO> getAllEmployee();
 
-//    void saveEmployee(EmployeeDTO employeeDTO, String password);
 }
