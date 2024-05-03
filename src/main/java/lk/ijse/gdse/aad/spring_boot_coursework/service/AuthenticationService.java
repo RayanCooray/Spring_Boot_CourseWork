@@ -6,7 +6,7 @@ import lk.ijse.gdse.aad.spring_boot_coursework.reqANDresp.secure.SignIn;
 import lk.ijse.gdse.aad.spring_boot_coursework.reqANDresp.secure.SignUp;
 
 public interface AuthenticationService {
-    JWTAuthResponse signIn(SignIn signIn);
+    JWTAuthResponse signIn(SignIn signInReq);
 
 //    JWTAuthResponse signUp(SignUp signUp, EmployeeDTO employeeDTO);
     JWTAuthResponse signUp(SignUp signUp);
