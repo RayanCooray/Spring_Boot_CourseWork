@@ -32,7 +32,7 @@ public class JWTConfigurationFilter extends OncePerRequestFilter {
         final String jwt;
         String authorization_header = request.getHeader("Authorization");
 
-        if (StringUtils.isEmpty(authorization_header) || authorization_header.startsWith("Bearer ")){
+        if (StringUtils.isEmpty(authorization_header) || !authorization_header.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
             return;
         }
