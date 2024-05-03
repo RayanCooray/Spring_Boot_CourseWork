@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -29,12 +30,6 @@ public class Supplier {
     private String contact_no_1;
     private String contact_no_2;
     private String email;
-
-    @ManyToMany
-    @JoinTable(
-            name = "supplier_inventory",
-            joinColumns = @JoinColumn(name = "supplier_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_code")
-    )
-    private Set<Inventory> inventories = new HashSet<>();
+    @OneToMany(mappedBy = "supplierEntity",cascade = CascadeType.ALL)
+    private List<Stock> stockEntities;
 }

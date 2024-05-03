@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/api/v1/supplier")
 @RequiredArgsConstructor
-public class Supplier {
+@CrossOrigin(origins = "http://localhost:63342")
+public class SupplierController {
+    private static int counter = 0;
     @Autowired
     private SupplierService supplierService;
 
@@ -21,10 +21,15 @@ public class Supplier {
         return "Health Test";
     }
 
+
+    public static String generateID() {
+        counter++;
+        return String.format("SUPPLIER%03d", counter);
+    }
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void Savesupplier(SupplierDTO supplierDTO){
-        supplierDTO.setSupplier_id(UUID.randomUUID().toString());
-       supplierService.saveSupplier(supplierDTO);
+        supplierDTO.setSupplier_id(generateID());
+        supplierService.saveSupplier(supplierDTO);
     }
     @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public boolean updateSupplier(SupplierDTO supplierDTO){
