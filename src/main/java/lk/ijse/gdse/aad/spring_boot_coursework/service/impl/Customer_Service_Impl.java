@@ -49,7 +49,7 @@ public class Customer_Service_Impl implements CustomerService {
             customerOptional.get().setContact(customerDTO.getContact());
             customerOptional.get().setEmail(customerDTO.getEmail());
             customerOptional.get().setPurchase_date_time(customerDTO.getPurchase_date_time());
-            customerOptional.ifPresent(customerDao::saveAndFlush);
+            customerOptional.ifPresent(customerDao::save);
             return true;
         }
     }
