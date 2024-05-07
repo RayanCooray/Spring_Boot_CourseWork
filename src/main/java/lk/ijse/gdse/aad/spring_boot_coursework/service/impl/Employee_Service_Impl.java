@@ -1,6 +1,7 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.service.impl;
 
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.Employee;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.User;
 import lk.ijse.gdse.aad.spring_boot_coursework.exception.NotFoundException;
@@ -48,33 +49,37 @@ public class Employee_Service_Impl implements EmployeeService {
         return mapping.toEmployeeDTO(employeeDao.save(employeeEntity));
     }
 
-    @Override
-    public void updateEmployee(String id, EmployeeDTO employeeDTO ) {
-        if (!employeeDao.existsById(id)) throw new NotFoundException("Gender Not Found");
-        employeeDao.save(mapping.toEmployee(employeeDTO));
-    }
 //    @Override
-//    public void updateEmployee(String id, EmployeeDTO employeeDTO) {
-//        Optional<Employee> employeeOptional = employeeDao.findById(id);
-//        if (!employeeOptional.isPresent()) throw new NotFoundException("Employee");{
-//                    employeeOptional.get().setCode(id);
-//                    employeeOptional.get().setName(employeeDTO.getName());
-//                    employeeOptional.get().setGender(employeeDTO.getGender());
-//                    employeeOptional.get().setDate_of_birth(employeeDTO.getDate_of_birth());
-//                    employeeOptional.get().setContact_no(employeeDTO.getContact_no());
-//                    employeeOptional.get().setEmergency_contact_no(employeeDTO.getEmergency_contact_no());
-//                    employeeOptional.get().setProfile_picture(employeeDTO.getProfile_picture());
-//                    employeeOptional.get().setAccessRole(employeeDTO.getAccessRole());
-//                    employeeOptional.get().setDesignation(employeeDTO.getDesignation());
-//                    employeeOptional.get().setName_of_the_guardian(employeeDTO.getName_of_the_guardian());
-//                    employeeOptional.get().setDate_of_joining(employeeDTO.getDate_of_joining());
-//                    employeeOptional.get().setAddress(employeeDTO.getAddress());
-//                    employeeOptional.get().setAttached_branch(employeeDTO.getAttached_branch());
-//                    employeeOptional.get().setStatus(employeeDTO.getStatus());
-//                    employeeOptional.get().setEmail(employeeDTO.getEmail());
-//                    employeeOptional.ifPresent(employeeDao::saveAndFlush);
-//        }
+//    public void updateEmployee(String id, EmployeeDTO employeeDTO ) {
+//        if (!employeeDao.existsById(id)) throw new NotFoundException("Gender Not Found");
+//        employeeDao.save(mapping.toEmployee(employeeDTO));
 //    }
+    @Override
+    public void updateEmployee(String id, EmployeeDTO employeeDTO) {
+        Optional<Employee> employeeOptional = employeeDao.findById(id);
+        if (!employeeOptional.isPresent()) throw new NotFoundException("Employee");{
+                    employeeOptional.get().setCode(id);
+                    employeeOptional.get().setName(employeeDTO.getName());
+                    employeeOptional.get().setGender(employeeDTO.getGender());
+                    employeeOptional.get().setDate_of_birth(employeeDTO.getDate_of_birth());
+                    employeeOptional.get().setContact_no(employeeDTO.getContact_no());
+                    employeeOptional.get().setEmergency_contact_no(employeeDTO.getEmergency_contact_no());
+                    employeeOptional.get().setProfile_picture(employeeDTO.getProfile_picture());
+                    employeeOptional.get().setAccessRole(employeeDTO.getAccessRole());
+                    employeeOptional.get().setDesignation(employeeDTO.getDesignation());
+                    employeeOptional.get().setName_of_the_guardian(employeeDTO.getName_of_the_guardian());
+                    employeeOptional.get().setDate_of_joining(employeeDTO.getDate_of_joining());
+                    employeeOptional.get().setAddress1(employeeDTO.getAddress1());
+                    employeeOptional.get().setAddress2(employeeDTO.getAddress2());
+                    employeeOptional.get().setAddress3(employeeDTO.getAddress3());
+                    employeeOptional.get().setAddress4(employeeDTO.getAddress4());
+                    employeeOptional.get().setPostalCode(employeeDTO.getPostalCode());
+                    employeeOptional.get().setBranch(Branch.valueOf(employeeDTO.getBranch()));
+                    employeeOptional.get().setStatus(employeeDTO.getStatus());
+                    employeeOptional.get().setEmail(employeeDTO.getEmail());
+                    employeeOptional.ifPresent(employeeDao::saveAndFlush);
+        }
+    }
 
     @Override
     public void deleteEmployee(String id) {
@@ -96,5 +101,19 @@ public class Employee_Service_Impl implements EmployeeService {
     public Iterable<EmployeeDTO> getAllEmployee() {
         return mapping.toEmployeeDTOs(employeeDao.findAll());
     }
+
+    @Override
+    public Iterable<EmployeeDTO> getAllEmployeesByBranch(Branch branch) {
+        System.out.println(branch);
+        return mapping.toEmployeeDTOs(employeeDao.findByBranch(branch));
+    }
+
+//    @Override
+//    public Iterable<EmployeeDTO> getAllEmployeesByBranch(Branch branch) {
+//        return mapping.toEmployeeDTOs(employeeDao.findByAttached_branch(branch));
+//    }
+
+
+
 
 }

@@ -1,5 +1,6 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.controller;
 
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
 import lk.ijse.gdse.aad.spring_boot_coursework.dto.EmployeeDTO;
 import lk.ijse.gdse.aad.spring_boot_coursework.service.EmployeeService;
 import lk.ijse.gdse.aad.spring_boot_coursework.util.Imp;
@@ -31,6 +32,7 @@ public class EmployeeController {
         employeeDTO.setCode(generateID());
         System.out.println(employeeDTO.getCode()+"===============================================================================");
         String dp = Imp.convertBase64(profilepic);
+        System.out.println(employeeDTO.getBranch()+"================================================================");
         employeeDTO.setProfile_picture(dp);
         System.out.println(employeeDTO.getCode());
         employeeService.saveEmployee(employeeDTO);
@@ -69,4 +71,13 @@ public class EmployeeController {
         System.out.println(".........................................");
         return employeeService.getAllEmployee();
     }
+
+
+    @GetMapping(value = "/getAllEmployeesByBranch/{branch}")
+    public Iterable<EmployeeDTO> getAllEmployeesByBranch(@PathVariable("branch") Branch branch) {
+        System.out.println("=======================" + branch);
+        return employeeService.getAllEmployeesByBranch(branch);
+    }
+
+
 }
