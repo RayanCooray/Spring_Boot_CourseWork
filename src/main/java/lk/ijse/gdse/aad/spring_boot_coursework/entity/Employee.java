@@ -2,6 +2,7 @@ package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
 import jakarta.persistence.*;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Gender;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Status;
 import lombok.AllArgsConstructor;
@@ -29,8 +30,13 @@ public class Employee implements SuperEntity {
     private String designation;
     private String name_of_the_guardian;
     private String date_of_joining;
-    private String address;
-    private String attached_branch;
+    private String address1;
+    private String address2;
+    private String address3;
+    private String address4;
+    private String postalCode;
+    @Enumerated(EnumType.STRING)
+    private Branch branch;
     @Enumerated(EnumType.STRING)
     private Status status;
     private String email;
