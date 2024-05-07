@@ -64,9 +64,6 @@ public class Mapping {
         return mapper.map(all, List.class);
     }
 
-    public Iterable<ItemDTO> toItemDTOs(List<Item> all) {
-        return mapper.map(all, List.class);
-    }
 
     public Collection<UserDTO> toUserDTOs(List<User> all) {
         return mapper.map(all, Collection.class);
@@ -107,4 +104,13 @@ public class Mapping {
     public VarietyDTO toVarietyDTO(Variety variety) {
         return mapper.map(variety, VarietyDTO.class);
     }
+
+    public Item toItemEntity(ItemDTO itemDTO) {
+        return mapper.map(itemDTO, Item.class);
+    }
+
+    public Iterable<ItemDTO> toItemDTOs(List<Item> all) {
+        return mapper.map(all, List.class);
+    }
+
 }

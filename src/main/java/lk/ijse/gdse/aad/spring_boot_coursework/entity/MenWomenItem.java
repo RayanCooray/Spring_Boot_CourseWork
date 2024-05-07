@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-//@Table (name = "gender")
+@Table (name = "gender")
 public class MenWomenItem {
     @Id
     @Nullable()

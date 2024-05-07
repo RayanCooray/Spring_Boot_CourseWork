@@ -24,7 +24,7 @@ public class Stock {
     @ManyToOne
     @JoinColumn(name = "itemCode")
     private Item itemEntity;
-    private Date supplierOrderDate;
+    private Date suppliedDate;
 
     @OneToMany(mappedBy = "stockEntity",cascade = CascadeType.ALL)
     private List<StockSize> stockSizeEntities;

@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-//@Table (name = "Occassion")
+@Table (name = "Occassion")
 public class Occasion {
     @Id
     private String occasionCode;
