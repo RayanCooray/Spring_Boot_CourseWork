@@ -1,7 +1,10 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Gender;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Status;
 import lombok.AllArgsConstructor;
@@ -20,8 +23,10 @@ public class EmployeeDTO{
     @NotNull(message = "Employee dob cannot be blank")
     private String date_of_birth;
     @NotNull(message = "Employee Tel No cannot be blank")
+    @Pattern(regexp = "^\\+?[0-9\\-\\s]+$", message = "Invalid contact number format")
     private String contact_no;
     @NotNull(message = "Employee EM Tel No cannot be blank")
+    @Pattern(regexp = "^\\+?[0-9\\-\\s]+$", message = "Invalid contact number format")
     private String emergency_contact_no;
     private String profile_picture;
     @NotNull(message = "Employee Role cannot be blank")
@@ -32,10 +37,19 @@ public class EmployeeDTO{
     private String name_of_the_guardian;
     @NotNull(message = "Employee Date of Joining cannot be blank")
     private String date_of_joining;
-    @NotNull(message = "Employee Address cannot be blank")
-    private String address;
-    @NotNull(message = "Employee Branch cannot be blank")
-    private String attached_branch;
+    @NotBlank(message = "Address 1 cannot be blank")
+    private String address1;
+    @NotBlank(message = "Address 2 cannot be blank")
+    private String address2;
+    @NotBlank(message = "Address 3 cannot be blank")
+    private String address3;
+    @NotBlank(message = "Address 4 cannot be blank")
+    private String address4;
+    @NotBlank(message = "Postal code cannot be blank")
+    @Pattern(regexp = "\\d{5}", message = "Postal code must be 5 digits")
+    private String postalCode;
+    @NotNull
+    private String branch;
     @NotNull(message = "Employee Status cannot be blank")
     private Status status;
     @NotNull(message = "Employee Email cannot be blank")

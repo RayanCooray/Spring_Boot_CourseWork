@@ -1,5 +1,6 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.service;
 
+import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
 import lk.ijse.gdse.aad.spring_boot_coursework.dto.EmployeeDTO;
 
 public interface EmployeeService {
@@ -13,4 +14,5 @@ public interface EmployeeService {
 
     Iterable<EmployeeDTO> getAllEmployee();
 
+    Iterable<EmployeeDTO> getAllEmployeesByBranch(Branch branch);
 }
