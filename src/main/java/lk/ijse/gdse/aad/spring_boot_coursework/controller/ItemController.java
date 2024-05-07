@@ -20,7 +20,7 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping("/health")
-    public String healthTest(){
+    public String healthTest() {
         return "Item Health  Test";
     }
 
@@ -30,31 +30,53 @@ public class ItemController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean saveItem(ItemDTO itemDTO, @RequestPart ("ItemPicture") String ItemPicture){
-        String itempicture = Imp.convertBase64(ItemPicture);
+    public void saveItem(@RequestPart ("itemDesc") String itemDesc,
+                         @RequestPart ("pic") String pic,
+                         @RequestPart ("status") String status,
+                         @RequestPart ("genderCode") String genderCode,
+                         @RequestPart ("occasionCode") String occasionCode,
+                         @RequestPart ("varietyCode") String varietyCode){
+        ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItem_code(generateID());
-        itemDTO.setItem_pic(itempicture);
+        itemDTO.setItem_desc(itemDesc);
+        itemDTO.setStatus(status);
+        itemDTO.setGenderCode(genderCode);
+        itemDTO.setOccasionCode(occasionCode);
+        itemDTO.setVarietyCode(varietyCode);
+        String Item_Picture = Imp.convertBase64(pic);
+        itemDTO.setItem_pic(Item_Picture);
         itemService.saveItem(itemDTO);
-        return true;
     }
 
     @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean updateItem(ItemDTO itemDTO, @RequestPart ("ItemPicture") String ItemPicture){
-        String itempicture = Imp.convertBase64(ItemPicture);
-        itemDTO.setItem_pic(itempicture);
-        return itemService.updateItem(itemDTO.getItem_code(),itemDTO);
+    public boolean updateItem(@RequestPart ("item_code") String itemCode,
+                              @RequestPart ("itemDesc") String itemDesc,
+                              @RequestPart ("pic") String pic,
+                              @RequestPart ("status") String status,
+                              @RequestPart ("genderCode") String genderCode,
+                              @RequestPart ("occasionCode") String occasionCode,
+                              @RequestPart ("varietyCode") String varietyCode){
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setItem_code(itemCode);
+        itemDTO.setItem_desc(itemDesc);
+        itemDTO.setStatus(status);
+        itemDTO.setGenderCode(genderCode);
+        itemDTO.setOccasionCode(occasionCode);
+        itemDTO.setVarietyCode(varietyCode);
+        String Item_Picture = Imp.convertBase64(pic);
+        itemDTO.setItem_pic(Item_Picture);
+        return  itemService.update(itemDTO,itemCode);
     }
-
-    @GetMapping("/getAllItems")
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public boolean deleteItem(@RequestPart("itemCode") String itemCode){
+        return itemService.deleteItem(itemCode);
+    }
+    @GetMapping(value = "/GetItem",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ItemDTO getItem(@RequestPart("itemCode") String itemCode){
+        return itemService.getItem(itemCode);
+    }
+    @GetMapping(value = "/getAllItems")
     public Iterable<ItemDTO> getAllItems(){
         return itemService.getAllItems();
-    }
-    @GetMapping(value = "/getItemById",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ItemDTO getItem(@RequestPart("id") String id){
-        return itemService.getItem(id);
-    }
-    @DeleteMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean deleteItem(@RequestPart ("id") String id){
-        return itemService.deleteItem(id);
     }
 }

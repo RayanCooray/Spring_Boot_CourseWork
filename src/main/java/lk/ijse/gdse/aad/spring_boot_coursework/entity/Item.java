@@ -22,8 +22,6 @@ public class Item {
     private int item_qty;
     @Column(columnDefinition = "LONGTEXT")
     private String item_pic;
-    private String category;
-    private Integer size;
 
     private String status;
 

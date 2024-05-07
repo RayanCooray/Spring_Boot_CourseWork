@@ -14,13 +14,10 @@ public class ItemDTO {
     @NotNull
     private String item_desc;
     @NotNull
-    private int item_qty;
-    @NotNull
     private String item_pic;
     @NotNull
-    private String category;
-    @NotNull
-    private String item_size;
-    @NotNull
     private String status;
+    private String genderCode;
+    private String occasionCode;
+    private String varietyCode;
 }
