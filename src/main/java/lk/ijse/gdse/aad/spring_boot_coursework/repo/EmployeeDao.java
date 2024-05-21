@@ -12,4 +12,5 @@ import java.util.List;
 @Transactional
 public interface EmployeeDao extends JpaRepository<Employee,String> {
     List<Employee> findByBranch(Branch attached_branch);
+
 }

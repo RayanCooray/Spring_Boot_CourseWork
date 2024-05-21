@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping("/signin")
     public ResponseEntity<JWTAuthResponse> signIn(@RequestBody SignIn signInReq) {
-        System.out.println(signInReq.getUser_email());
+        System.out.println(signInReq.getEmail());
         return ResponseEntity.ok(authenticationService.signIn(signInReq));
     }
     @GetMapping("/getAll")

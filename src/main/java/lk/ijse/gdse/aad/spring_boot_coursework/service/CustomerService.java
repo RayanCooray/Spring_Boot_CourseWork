@@ -12,4 +12,6 @@ public interface CustomerService {
     Iterable<CustomerDTO> getAllCustomers();
 
     CustomerDTO getCustomer(String id);
+
+    String generateNextCustomerId();
 }

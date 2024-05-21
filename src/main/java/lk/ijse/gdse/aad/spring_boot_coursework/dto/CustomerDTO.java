@@ -11,8 +11,7 @@ import lombok.*;
 @Data
 @ToString
 public class CustomerDTO {
-    @NotNull
-    private String customer_code;
+    private String customerCode;
     @NotNull
     private String customer_name;
     @NotNull
