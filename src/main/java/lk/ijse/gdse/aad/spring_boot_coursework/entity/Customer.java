@@ -9,18 +9,19 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Table(name = "Customer")
 @Entity
+@Data
+
 public class Customer {
     @Id
-    private String customer_code;
+    private String customerCode;
     private String customer_name;
     private String DOB;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private String joined_date;
-    private Integer total_points;
+    private String total_points;
     @Enumerated(EnumType.STRING)
     private Level level;
     private String address_line_01;

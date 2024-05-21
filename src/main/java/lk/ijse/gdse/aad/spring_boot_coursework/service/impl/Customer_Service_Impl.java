@@ -25,21 +25,27 @@ public class Customer_Service_Impl implements CustomerService {
 
     @Override
     public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
-        return mapping.toCustomerDTO((customerDao
-                .save(mapping.toCustomer(customerDTO))));
+        customerDTO.setCustomerCode(generateNextCustomerId());
+        System.out.println("ppppppppppp"+customerDTO.getCustomerCode());
+        Customer customer = new Customer(customerDTO.getCustomerCode(),customerDTO.getCustomer_name(),customerDTO.getDOB(),customerDTO.getGender(),customerDTO.getJoined_date(),customerDTO.getTotal_points(),customerDTO.getLevel(),customerDTO.getAddress_line_01(),customerDTO.getAddress_line_02(),customerDTO.getAddress_line_03(),customerDTO.getAddress_line_04(),customerDTO.getAddress_line_05(),customerDTO.getContact(),customerDTO.getEmail(),customerDTO.getPurchase_date_time());
+        System.out.println(customer.getCustomerCode());
+        Customer savedCustomer = customerDao.save(customer);
+        System.out.println(savedCustomer);
+        return mapping.toCustomerDTO(savedCustomer);
+
     }
 
     @Override
     public boolean updateCustomer(String id, CustomerDTO customerDTO) {
         Optional<Customer> customerOptional = customerDao.findById(id);
         if (!customerOptional.isPresent()) throw new NotFoundException("Employee");{
-            customerOptional.get().setCustomer_code(id);
+            customerOptional.get().setCustomerCode(id);
             customerOptional.get().setCustomer_name(customerDTO.getCustomer_name());
             customerOptional.get().setGender(customerDTO.getGender());
             customerOptional.get().setDOB(customerDTO.getDOB());
             customerOptional.get().setGender(customerDTO.getGender());
             customerOptional.get().setJoined_date(customerDTO.getJoined_date());
-            customerOptional.get().setTotal_points(Integer.valueOf(customerDTO.getTotal_points()));
+            customerOptional.get().setTotal_points((customerDTO.getTotal_points()));
             customerOptional.get().setLevel(customerDTO.getLevel());
             customerOptional.get().setAddress_line_01(customerDTO.getAddress_line_01());
             customerOptional.get().setAddress_line_02(customerDTO.getAddress_line_02());
@@ -74,6 +80,18 @@ public class Customer_Service_Impl implements CustomerService {
         if (!customerOptional.isPresent()) throw new NotFoundException("Employee");{
             return mapping.toCustomerDTO(customerOptional.get());
         }
+    }
+
+    @Override
+    public String generateNextCustomerId() {
+        Customer lastCustomer = customerDao.findFirstByOrderByCustomerCodeDesc();
+        if (lastCustomer == null) {
+            return "Cust-001";
+        }
+        String lastCustomerId = lastCustomer.getCustomerCode();
+        int lastId = Integer.parseInt(lastCustomerId.split("-")[1]);
+        int nextId = lastId + 1;
+        return "Cust-" + String.format("%03d", nextId);
     }
 
 

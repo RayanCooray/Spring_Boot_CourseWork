@@ -37,10 +37,10 @@ public class Auth_Service implements AuthenticationService {
 
     @Override
     public JWTAuthResponse signIn(SignIn signInReq) {
-        System.out.println(signInReq.getUser_email());
+        System.out.println(signInReq.getEmail());
         // TODO: 2021-05-12
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInReq.getUser_email(), signInReq.getPassword()));
-        var userByEmail = userDAO.findByEmail(signInReq.getUser_email()).orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInReq.getEmail(), signInReq.getPassword()));
+        var userByEmail = userDAO.findByEmail(signInReq.getEmail()).orElseThrow(() -> new UsernameNotFoundException("Email not found"));
         System.out.println("==================="+userByEmail);
         String token = jwtService.generateToken(userByEmail);
         return JWTAuthResponse.builder().token(token).build();
