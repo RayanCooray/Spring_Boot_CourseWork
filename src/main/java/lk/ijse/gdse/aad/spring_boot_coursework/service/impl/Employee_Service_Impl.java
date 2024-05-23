@@ -2,6 +2,7 @@ package lk.ijse.gdse.aad.spring_boot_coursework.service.impl;
 
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
+import lk.ijse.gdse.aad.spring_boot_coursework.entity.Customer;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.Employee;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.User;
 import lk.ijse.gdse.aad.spring_boot_coursework.exception.NotFoundException;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -35,6 +37,8 @@ public class Employee_Service_Impl implements EmployeeService {
     @Override
     public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
         Employee employeeEntity = mapping.toEmployee(employeeDTO);
+        employeeEntity.setCode(generateNextEMPId());
+        System.out.println("============================================================"+employeeDTO.getCode());
         String email = employeeDTO.getEmail();
         System.out.println(email);
         Optional<User> optionalUser = userDao.findByEmail(email);
@@ -99,7 +103,10 @@ public class Employee_Service_Impl implements EmployeeService {
 
     @Override
     public Iterable<EmployeeDTO> getAllEmployee() {
-        return mapping.toEmployeeDTOs(employeeDao.findAll());
+        List<Employee> employees = employeeDao.findAll();
+        Iterable<EmployeeDTO> employeeDTOs = mapping.toEmployeeDTOs(employees);
+        System.out.println(employeeDTOs);
+        return employeeDTOs;
     }
 
     @Override
@@ -113,6 +120,17 @@ public class Employee_Service_Impl implements EmployeeService {
 //        return mapping.toEmployeeDTOs(employeeDao.findByAttached_branch(branch));
 //    }
 
+    @Override
+    public String generateNextEMPId() {
+        Employee employee = employeeDao.findFirstByOrderByCodeDesc();
+        if (employee == null) {
+            return "Emp-001";
+        }
+        String lastCustomerId = employee.getCode();
+        int lastId = Integer.parseInt(lastCustomerId.split("-")[1]);
+        int nextId = lastId + 1;
+        return "Emp-" + String.format("%03d", nextId);
+    }
 
 
 

@@ -17,7 +17,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:63342")
 public class EmployeeController {
-    private static int counter = 0;
     @Autowired
     private EmployeeService employeeService;
 
@@ -26,22 +25,12 @@ public class EmployeeController {
         return "Health Test";
     }
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean saveemp(@Validated EmployeeDTO employeeDTO, @RequestPart("profilepic") String profilepic){
+    public boolean saveemp(@Validated EmployeeDTO employeeDTO){
         String dob = String.valueOf(employeeDTO.getDate_of_birth());
         employeeDTO.setDate_of_birth(dob);
-        employeeDTO.setCode(generateID());
-        System.out.println(employeeDTO.getCode()+"===============================================================================");
-        String dp = Imp.convertBase64(profilepic);
-        System.out.println(employeeDTO.getBranch()+"================================================================");
-        employeeDTO.setProfile_picture(dp);
         System.out.println(employeeDTO.getCode());
         employeeService.saveEmployee(employeeDTO);
         return true;
-    }
-
-    public static String generateID() {
-        counter++;
-        return String.format("EMP%03d", counter);
     }
 
 
@@ -50,7 +39,6 @@ public class EmployeeController {
         employeeDTO.setCode(id);
         String dob = String.valueOf(employeeDTO.getDate_of_birth());
         employeeDTO.setDate_of_birth(dob);
-        employeeDTO.setCode(UUID.randomUUID().toString());
         String dp = Imp.convertBase64(profilepic);
         System.out.println("===================================================================================="+id);
         employeeDTO.setProfile_picture(dp);

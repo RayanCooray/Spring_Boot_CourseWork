@@ -15,4 +15,5 @@ public interface EmployeeService {
     Iterable<EmployeeDTO> getAllEmployee();
 
     Iterable<EmployeeDTO> getAllEmployeesByBranch(Branch branch);
+    String generateNextEMPId();
 }
