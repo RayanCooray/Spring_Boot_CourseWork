@@ -4,9 +4,7 @@ import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
 import lk.ijse.gdse.aad.spring_boot_coursework.dto.EmployeeDTO;
 
 public interface EmployeeService {
-    EmployeeDTO saveEmployee(EmployeeDTO dto);
-
-    void updateEmployee(String id, EmployeeDTO employeeDTO);
+    void saveEmployee(EmployeeDTO dto);
 
     void deleteEmployee(String id);
 
@@ -16,4 +14,6 @@ public interface EmployeeService {
 
     Iterable<EmployeeDTO> getAllEmployeesByBranch(Branch branch);
     String generateNextEMPId();
+
+    void updateEmployee(EmployeeDTO employeeDTO);
 }
