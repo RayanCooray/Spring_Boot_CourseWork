@@ -12,4 +12,6 @@ public interface SupplierService {
     boolean updateSupplier(String supplierId, SupplierDTO supplierDTO);
 
     boolean deleteSupplier(String id);
+
+    String generateNextSupplierId();
 }

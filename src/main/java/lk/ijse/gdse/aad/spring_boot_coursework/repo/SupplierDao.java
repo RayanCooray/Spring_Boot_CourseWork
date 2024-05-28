@@ -11,4 +11,6 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface SupplierDao extends JpaRepository<Supplier,String> {
+//    Supplier findFirstByOrderByCodeDesc();
+    Supplier findFirstByOrderBySupplierIdDesc();
 }

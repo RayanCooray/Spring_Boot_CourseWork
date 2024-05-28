@@ -1,6 +1,7 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.service.impl;
 
 import lk.ijse.gdse.aad.spring_boot_coursework.dto.SupplierDTO;
+import lk.ijse.gdse.aad.spring_boot_coursework.entity.Customer;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.Employee;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.Supplier;
 import lk.ijse.gdse.aad.spring_boot_coursework.exception.NotFoundException;
@@ -24,9 +25,18 @@ public class SupplierService_Impl implements SupplierService {
 
     @Override
     public SupplierDTO saveSupplier(SupplierDTO supplierDTO) {
+//        supplierDTO.setCode(generateNextSupplierId());
+//        System.out.println("==========================================================================================================================================="+supplierDTO);
+//
+//        return mapping.toSupplierDTO((supplierDao
+//                .save(mapping.toSupplier(supplierDTO))));
+        supplierDTO.setSupplierId(generateNextSupplierId());
         System.out.println("==========================================================================================================================================="+supplierDTO);
-        return mapping.toSupplierDTO((supplierDao
-                .save(mapping.toSupplier(supplierDTO))));
+
+        Supplier supplier = mapping.toSupplier(supplierDTO);
+        supplier.setSupplierId(supplierDTO.getSupplierId()); // Ensure supplierId is set
+
+        return mapping.toSupplierDTO(supplierDao.save(supplier));
     }
 
     @Override
@@ -44,7 +54,7 @@ public class SupplierService_Impl implements SupplierService {
         Optional<Supplier> supplierOptional = supplierDao.findById(supplierId);
         if (!supplierOptional.isPresent()) throw new NotFoundException("Employee");
         {
-            supplierOptional.get().setSupplier_id(supplierId);
+            supplierOptional.get().setSupplierId(supplierId);
             supplierOptional.get().setSupplier_name(supplierDTO.getSupplier_name());
             supplierOptional.get().setCategory(supplierDTO.getCategory());
             supplierOptional.get().setAddress_line_01(supplierDTO.getAddress_line_01());
@@ -69,4 +79,15 @@ public class SupplierService_Impl implements SupplierService {
         }
     }
 
+    @Override
+    public String generateNextSupplierId() {
+        Supplier lastSupplier = supplierDao.findFirstByOrderBySupplierIdDesc();
+        if (lastSupplier == null) {
+            return "Supp-001";
+        }
+        String lastCustomerId = lastSupplier.getSupplierId();
+        int lastId = Integer.parseInt(lastCustomerId.split("-")[1]);
+        int nextId = lastId + 1;
+        return "Supp-" + String.format("%03d", nextId);
+    }
 }

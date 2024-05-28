@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "supplier")
 public class Supplier {
     @Id
-    private String supplier_id;
+    private String supplierId;
     private String supplier_name;
     @Enumerated(EnumType.STRING)
     private Category category;
