@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:63342")
 public class SupplierController {
-    private static int counter = 0;
+
     @Autowired
     private SupplierService supplierService;
 
@@ -22,19 +22,16 @@ public class SupplierController {
     }
 
 
-    public static String generateID() {
-        counter++;
-        return String.format("SUPPLIER%03d", counter);
-    }
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void Savesupplier(SupplierDTO supplierDTO){
-        supplierDTO.setSupplier_id(generateID());
         supplierService.saveSupplier(supplierDTO);
     }
+
+
     @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public boolean updateSupplier(SupplierDTO supplierDTO){
-        System.out.println(supplierDTO.getSupplier_id());
-        return supplierService.updateSupplier(supplierDTO.getSupplier_id(),supplierDTO);
+        System.out.println(supplierDTO.getSupplierId());
+        return supplierService.updateSupplier(supplierDTO.getSupplierId(),supplierDTO);
     }
 
     @GetMapping("/getAllSuppliers")
@@ -43,14 +40,14 @@ public class SupplierController {
     }
 
 
-    @GetMapping("/getSupplierById")
-    public SupplierDTO getSupplierById(@RequestPart ("id") String id){
+    @GetMapping(value = "/{id}",produces = "application/json")
+    public SupplierDTO getSupplierById(@PathVariable ("id") String id){
         return supplierService.getSupplierById(id);
     }
 
 
-    @DeleteMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean deleteSupplier(@RequestPart ("id") String id){
+    @DeleteMapping(value = "/{id}",produces = "application/json")
+    public boolean deleteSupplier(@PathVariable ("id") String id){
         return supplierService.deleteSupplier(id);
     }
 }

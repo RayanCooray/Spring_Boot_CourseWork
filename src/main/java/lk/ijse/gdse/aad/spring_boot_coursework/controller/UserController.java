@@ -20,6 +20,7 @@ import java.util.Collection;
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:63342")
+//@CrossOrigin(origins = "http://localhost:57160")
 public class UserController {
     @Autowired
     private UserService userService;

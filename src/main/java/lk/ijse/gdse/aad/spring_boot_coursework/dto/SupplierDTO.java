@@ -11,7 +11,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class SupplierDTO {
-    private String supplier_id;
+    private String supplierId;
     private String supplier_name;
     private Category category;
     private String address_line_01;

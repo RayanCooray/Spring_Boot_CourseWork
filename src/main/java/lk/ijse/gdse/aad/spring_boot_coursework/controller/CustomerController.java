@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/customer")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:63342")
+//@CrossOrigin(origins = "http://localhost:57160")
 public class CustomerController {
 
 //    private static int counter = 0;
