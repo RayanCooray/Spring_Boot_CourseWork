@@ -9,6 +9,8 @@ public interface GenderService {
 
     boolean deleteGender(String genderCode);
 
+    String generateNextGenderID();
+
     GenderDTO[] getAllGenders();
 
     GenderDTO getGender(String genderCode);
