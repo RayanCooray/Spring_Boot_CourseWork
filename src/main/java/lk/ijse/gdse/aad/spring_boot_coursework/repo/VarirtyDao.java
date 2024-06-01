@@ -6,4 +6,6 @@ import org.springframework.validation.annotation.Validated;
 
 @Validated
 public interface VarirtyDao extends JpaRepository<Variety,String> {
+    Variety findFirstByOrderByVarietyCodeDesc();
+
 }

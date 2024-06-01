@@ -11,5 +11,7 @@ public interface VarietyService {
 
     VarietyDTO[] getAllVarieties();
 
+    String generateNextVarietyID();
+
     VarietyDTO getVariety(String varietyCode);
 }

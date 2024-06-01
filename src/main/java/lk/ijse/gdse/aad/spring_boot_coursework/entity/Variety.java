@@ -1,6 +1,7 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +18,6 @@ public class Variety {
     private String varietyCode;
     private String varietyDesc;
     @OneToMany(mappedBy = "varietyEntity",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Item> itemEntities;
 }
