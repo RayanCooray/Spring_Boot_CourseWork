@@ -17,7 +17,7 @@ public class ItemDTO {
     private String item_pic;
     @NotNull
     private String status;
-    private String genderCode;
-    private String occasionCode;
-    private String varietyCode;
+    private String genderEntity;
+    private String occasionEntity;
+    private String varietyEntity;
 }

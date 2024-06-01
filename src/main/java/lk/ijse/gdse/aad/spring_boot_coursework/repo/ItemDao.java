@@ -10,5 +10,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface ItemDao extends JpaRepository<Item,String> {
+public interface ItemDao extends JpaRepository<Item, String> {
+    Item findFirstByOrderByItemCodeDesc();
 }
+
