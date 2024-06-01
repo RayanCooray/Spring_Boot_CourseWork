@@ -38,16 +38,16 @@ public class InventorySetController {
         return genderService.updateGender(genderDTO.getGenderCode(),genderDTO);
     }
     @DeleteMapping(value = "/deleteGender",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean deleteGender(@RequestPart String genderCode){
-        return genderService.deleteGender(genderCode);
+    public boolean deleteGender(@RequestPart String id){
+        return genderService.deleteGender(id);
     }
     @GetMapping("/getAllGenders")
     public GenderDTO[] getAllGenders(){
         return genderService.getAllGenders();
     }
-    @GetMapping(value = "/getGender",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public GenderDTO getGender(@RequestPart String genderCode){
-        return genderService.getGender(genderCode);
+    @GetMapping(value = "Getgender/{id}",produces = "application/json")
+    public GenderDTO getGender(@PathVariable ("id") String id){
+        return genderService.getGender(id);
     }
 
 
@@ -71,10 +71,10 @@ public class InventorySetController {
     public OccasionDTO[] getAllOccasions(){
         return occasionService.getAllOccasions();
     }
-    @GetMapping(value = "/getOccasion",consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    @GetMapping(value = "/getOccasion/{id}",produces = "application/json"
     )
-    public OccasionDTO getOccasion(@RequestPart String occasionCode){
-        return occasionService.getOccasion(occasionCode);
+    public OccasionDTO getOccasion(@PathVariable String id){
+        return occasionService.getOccasion(id);
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -88,9 +88,9 @@ public class InventorySetController {
     public boolean updateVariety(@Validated @RequestBody VarietyDTO varietyDTO){
         return varietyService.updateVariety(varietyDTO.getVarietyCode(),varietyDTO);
     }
-    @DeleteMapping(value = "/deleteVariety",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean deleteVariety(@RequestPart String varietyCode){
-        return varietyService.deleteVariety(varietyCode);
+    @DeleteMapping(value = "/deleteVariety/{id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public boolean deleteVariety(@PathVariable String id){
+        return varietyService.deleteVariety(id);
     }
 
     @GetMapping("/getAllVarieties")
@@ -98,9 +98,9 @@ public class InventorySetController {
         return varietyService.getAllVarieties();
     }
 
-    @GetMapping(value = "/getVariety",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public VarietyDTO getVariety(@RequestPart String varietyCode){
-        return varietyService.getVariety(varietyCode);
+    @GetMapping(value = "/getVariety/{id}",produces = "application/json")
+    public VarietyDTO getVariety(@PathVariable String id){
+        return varietyService.getVariety(id);
     }
     ///////////////////////////////////////////////////////////////////
 }

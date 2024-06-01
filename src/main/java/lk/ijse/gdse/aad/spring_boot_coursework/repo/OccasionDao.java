@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OccasionDao extends JpaRepository<Occasion,String> {
+    Occasion findFirstByOrderByOccasionCodeDesc();
 }
