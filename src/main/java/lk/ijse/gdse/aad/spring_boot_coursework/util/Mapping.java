@@ -27,6 +27,8 @@ public class Mapping {
         return  mapper.map(user, UserDTO.class);
     }
 
+
+
     public User toUser(UserDTO userDTO) {
         return  mapper.map(userDTO, User.class);
     }
@@ -115,5 +117,6 @@ public class Mapping {
     public Iterable<ItemDTO> toItemDTOs(List<Item> all) {
         return mapper.map(all, List.class);
     }
+
 
 }

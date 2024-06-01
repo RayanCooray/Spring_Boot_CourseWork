@@ -1,5 +1,6 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,11 +22,13 @@ public class Stock {
     @JoinColumn(name = "supplierCode",nullable = false)
     private Supplier supplierEntity;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "itemCode")
     private Item itemEntity;
     private Date suppliedDate;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "stockEntity",cascade = CascadeType.ALL)
     private List<StockSize> stockSizeEntities;
 }
