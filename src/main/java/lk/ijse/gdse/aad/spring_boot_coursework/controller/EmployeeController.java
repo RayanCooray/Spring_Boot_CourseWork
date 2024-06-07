@@ -25,8 +25,7 @@ import java.util.UUID;
 @CrossOrigin(origins = "http://localhost:63342")
 //@CrossOrigin(origins = "http://localhost:57160")
 public class EmployeeController {
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     @GetMapping("/health")
     public String healthTest(){
@@ -82,17 +81,14 @@ public class EmployeeController {
         employeeDTO.setAddress3(address3);
         employeeDTO.setAddress4(address4);
         employeeDTO.setPostalCode(postalCode);
-        employeeDTO.setBranch(String.valueOf(Branch.valueOf(branch)));
+        employeeDTO.setBranch(Branch.valueOf(branch));
         employeeDTO.setStatus(Status.valueOf(status));
         employeeDTO.setEmail(email);
         employeeService.updateEmployee(employeeDTO);
 
 
     }
-//    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public void updateEmployee(@RequestBody EmployeeDTO employeeDTO){
-//        employeeService.updateEmployee(employeeDTO);
-//    }
+
 
     @DeleteMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void deleteEmployee(@RequestPart("id") String id){

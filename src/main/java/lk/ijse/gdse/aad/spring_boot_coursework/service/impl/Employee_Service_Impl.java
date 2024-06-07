@@ -1,9 +1,11 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.service.impl;
 
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
+import lk.ijse.gdse.aad.spring_boot_coursework.entity.BranchEntity;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.Employee;
 import lk.ijse.gdse.aad.spring_boot_coursework.entity.User;
 import lk.ijse.gdse.aad.spring_boot_coursework.exception.NotFoundException;
+import lk.ijse.gdse.aad.spring_boot_coursework.repo.BranchDAO;
 import lk.ijse.gdse.aad.spring_boot_coursework.repo.EmployeeDao;
 import lk.ijse.gdse.aad.spring_boot_coursework.dto.EmployeeDTO;
 import lk.ijse.gdse.aad.spring_boot_coursework.repo.UserDao;
@@ -22,12 +24,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class Employee_Service_Impl implements EmployeeService {
     private final EmployeeDao employeeDao;
-
     private final UserDao userDao;
-
-    private final AuthenticationService authenticationService;
-
-
+    private final BranchDAO branchDAO;
     private final Mapping mapping;
     @Override
     public void saveEmployee(EmployeeDTO employeeDTO) {
@@ -36,6 +34,7 @@ public class Employee_Service_Impl implements EmployeeService {
         System.out.println("============================================================"+employeeDTO.getCode());
         String email = employeeDTO.getEmail();
         System.out.println(email);
+
         Optional<User> optionalUser = userDao.findByEmail(email);
         System.out.println(optionalUser);
         User user = new User();
@@ -115,7 +114,10 @@ public class Employee_Service_Impl implements EmployeeService {
             employeeOptional.get().setAddress3(employeeDTO.getAddress3());
             employeeOptional.get().setAddress4(employeeDTO.getAddress4());
             employeeOptional.get().setPostalCode(employeeDTO.getPostalCode());
-            employeeOptional.get().setBranch(Branch.valueOf(employeeDTO.getBranch()));
+            employeeOptional.get().setBranch(employeeDTO.getBranch());
+//            Optional<BranchEntity> optional = branchDAO.findById(employeeDTO.getBranchID());
+//            System.out.println(optional);
+//            employeeOptional.get().setBranch(optional.get());
             employeeOptional.get().setStatus(employeeDTO.getStatus());
             employeeOptional.get().setEmail(employeeDTO.getEmail());
             Optional<User> optionalUser = userDao.findByEmail(employeeDTO.getEmail());
