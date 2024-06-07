@@ -1,6 +1,7 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -30,6 +32,9 @@ public class User implements UserDetails {
         @Enumerated(EnumType.STRING)
         private Access_Role role;
 
+        @JsonIgnore
+        @OneToMany (mappedBy = "userEntity",cascade = CascadeType.ALL)
+        private List<Order> orderEntities;
 
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {

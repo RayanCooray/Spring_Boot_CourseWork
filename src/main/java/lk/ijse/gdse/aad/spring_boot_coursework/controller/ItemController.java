@@ -30,12 +30,14 @@ public class ItemController {
     public void saveItem(@RequestPart ("item_desc") String itemDesc,
                          @RequestPart ("item_pic") String pic,
                          @RequestPart ("status") String status,
+                         @RequestPart ("item_qty") String item_qty,
                          @RequestPart ("genderEntity") String genderCode,
                          @RequestPart ("occasionEntity") String occasionCode,
                          @RequestPart ("varietyEntity") String varietyCode){
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItem_desc(itemDesc);
         itemDTO.setStatus(status);
+        itemDTO.setItem_qty(Integer.parseInt(item_qty));
         itemDTO.setGenderEntity(genderCode);
         itemDTO.setOccasionEntity(occasionCode);
         itemDTO.setVarietyEntity(varietyCode);
@@ -62,18 +64,20 @@ public class ItemController {
                               @RequestPart ("itemDesc") String itemDesc,
                               @RequestPart ("pic") String pic,
                               @RequestPart ("status") String status,
+                              @RequestPart ("item_qty") String item_qty,
                               @RequestPart ("genderCode") String genderCode,
                               @RequestPart ("occasionCode") String occasionCode,
                               @RequestPart ("varietyCode") String varietyCode){
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItem_code(itemCode);
         itemDTO.setItem_desc(itemDesc);
+        itemDTO.setItem_qty(Integer.parseInt(item_qty));
+        System.out.println("================================================"+item_qty);
         itemDTO.setStatus(status);
         itemDTO.setGenderEntity(genderCode);
         itemDTO.setOccasionEntity(occasionCode);
         itemDTO.setVarietyEntity(varietyCode);
-        String Item_Picture = Imp.convertBase64(pic);
-        itemDTO.setItem_pic(Item_Picture);
+        itemDTO.setItem_pic(pic);
         return  itemService.update(itemDTO,itemCode);
     }
     @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

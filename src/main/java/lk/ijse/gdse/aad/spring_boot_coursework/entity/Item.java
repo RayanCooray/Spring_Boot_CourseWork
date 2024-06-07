@@ -27,8 +27,8 @@ public class Item {
 
     private String status;
 
-//    @JsonIgnore
-    @JsonManagedReference
+    @JsonIgnore
+//    @JsonManagedReference
    @OneToMany(mappedBy ="itemEntity",cascade = CascadeType.ALL)
    private List<Stock> stocks;
 

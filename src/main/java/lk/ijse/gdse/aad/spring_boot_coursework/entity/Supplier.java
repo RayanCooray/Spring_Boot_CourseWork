@@ -1,5 +1,7 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Category;
 import lombok.AllArgsConstructor;
@@ -30,6 +32,8 @@ public class Supplier {
     private String contact_no_1;
     private String contact_no_2;
     private String email;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "supplierEntity",cascade = CascadeType.ALL)
     private List<Stock> stockEntities;
 }

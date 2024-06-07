@@ -16,6 +16,7 @@ public class ItemDTO {
     @NotNull
     private String item_pic;
     @NotNull
+    private int item_qty;
     private String status;
     private String genderEntity;
     private String occasionEntity;

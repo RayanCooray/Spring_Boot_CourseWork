@@ -61,7 +61,8 @@ public class JWT_Service_Impl implements JWTService {
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
 
 
-        return accessToken + " : " +refreshToken;
+//        return accessToken + " : " +refreshToken;
+        return accessToken;
     }
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());

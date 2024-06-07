@@ -16,7 +16,7 @@ import java.util.List;
 public class Size {
     @Id
     private String sizeCode;
-    private String sizeDesc;
+//    private String sizeDesc;
 
     @OneToMany(mappedBy = "sizeEntity",cascade = CascadeType.ALL)
     private List<StockSize> stockSizeEntities;

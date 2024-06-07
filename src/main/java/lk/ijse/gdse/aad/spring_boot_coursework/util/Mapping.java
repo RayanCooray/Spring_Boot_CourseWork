@@ -119,4 +119,36 @@ public class Mapping {
     }
 
 
+    public Size toSize(SizeDTO sizeDTO) {
+        return mapper.map(sizeDTO, Size.class);
+    }
+
+    public Object toSizeDTOs(List<Size> all) {
+        return mapper.map(all, Object.class);
+    }
+
+    public Stock toStockEntity(StockDTO stockDTO) {
+        return mapper.map(stockDTO, Stock.class);
+    }
+
+    public BranchEntity toBranchEntity(BranchDTO branchDTO) {
+        return mapper.map(branchDTO, BranchEntity.class);
+    }
+
+    public Object toBranchDTOs(List<BranchEntity> all) {
+        return mapper.map(all, Object.class);
+    }
+
+    public Iterable<StockDTO> toStockDTOsByBranch(Object allByBranchEntityAndBranch) {
+        return mapper.map(allByBranchEntityAndBranch, List.class);
+    }
+
+    public Iterable<StockDTO> toStockDTOs(List<Stock> all) {
+        return mapper.map(all, List.class);
+    }
+
+    public StockDTO toStockDTO(Stock stock) {
+        return  mapper.map(stock, StockDTO
+                .class);
+    }
 }
