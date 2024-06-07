@@ -1,5 +1,6 @@
 package lk.ijse.gdse.aad.spring_boot_coursework.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Access_Role;
 import lk.ijse.gdse.aad.spring_boot_coursework.Enum.Branch;
@@ -42,4 +43,10 @@ public class Employee implements SuperEntity {
     private String email;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
+
+
+//    @JsonManagedReference
+//    @ManyToOne
+//    @JoinColumn(name = "branchId", nullable = true)
+//    private BranchEntity branch;
 }

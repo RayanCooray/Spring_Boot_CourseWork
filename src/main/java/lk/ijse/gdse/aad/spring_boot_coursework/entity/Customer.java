@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Customer")
@@ -33,4 +35,6 @@ public class Customer {
     private String email;
     private String purchase_date_time;
 
+    @OneToMany(mappedBy = "customerEntity",cascade = CascadeType.ALL)
+    private List<Order> orderEntities;
 }
