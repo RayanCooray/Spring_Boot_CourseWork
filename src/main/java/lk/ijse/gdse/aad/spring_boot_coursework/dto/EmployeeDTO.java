@@ -49,7 +49,8 @@ public class EmployeeDTO{
     @Pattern(regexp = "\\d{5}", message = "Postal code must be 5 digits")
     private String postalCode;
     @NotNull
-    private String branch;
+//    private String branchID;
+    private Branch branch;
     @NotNull(message = "Employee Status cannot be blank")
     private Status status;
     @NotNull(message = "Employee Email cannot be blank")

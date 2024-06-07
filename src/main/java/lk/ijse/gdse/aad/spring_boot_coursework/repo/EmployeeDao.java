@@ -15,4 +15,6 @@ public interface EmployeeDao extends JpaRepository<Employee,String> {
     List<Employee> findByBranch(Branch attached_branch);
 
     Employee findFirstByOrderByCodeDesc();
+
+    Employee findByEmail(String email);
 }
